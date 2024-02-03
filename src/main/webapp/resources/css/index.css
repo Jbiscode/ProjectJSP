@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    width: 500px;
+    margin: 50px auto;
+    border-radius: 24px;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 22px rgba(21, 22, 0, 0.19);
+}
+
+form table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    min-width: 430px;
+    width: 100%;
+}
+
+form th,
+form td {
+    border: 2px solid #ddd;
+    padding: 10px;
+}
+
+form th {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+#inputId,
+#inputName {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 7px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.errorMessage,
+.okMessage {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.okMessage {
+    color: green;
+}
+
+#inputPassword,
+#inputPasswordConfirm {
+    width: 250px;
+}
+
+#inputEmail,
+#inputEmailDomain {
+    width: 80px;
+}
+
+#inputPhone2,
+#inputPhone3 {
+    width: 50px;
+}
+
+#zipcode {
+    width: 100px;
+}
+
+#address1,
+#address2 {
+    width: 280px;
+    margin-top: 6px;
+}
+
+.buttons {
+    text-align: center;
+}
