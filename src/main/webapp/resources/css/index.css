@@ -82,12 +82,12 @@ select {
 
 #inputEmail,
 #inputEmailDomain {
-    width: 80px;
+    width: 90px;
 }
 
 #inputPhone2,
 #inputPhone3 {
-    width: 50px;
+    width: 60px;
 }
 
 #zipcode {

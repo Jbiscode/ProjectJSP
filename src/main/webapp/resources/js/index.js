@@ -180,3 +180,13 @@ function searchPost() {
         }
     }).open();
 }
+
+function checkUpdate() {
+    const nameCheck = checkName();
+    const emailCheck = checkEmail();
+    const passwordCheck = checkPassword();
+
+    if (nameCheck && emailCheck && passwordCheck) {
+        form.submit();
+    }
+}

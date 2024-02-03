@@ -58,7 +58,7 @@
 %>
 <script>
     alert("회원가입 실패");
-    location.href = "index.jsp";
+    location.href = "registerForm.jsp";
 </script>
 <%
     }

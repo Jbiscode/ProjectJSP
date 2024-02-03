@@ -59,7 +59,13 @@
         if (!id || !pwd) {
             alert('아이디 또는 비밀번호를 입력하세요');
         } else {
-            fetch('login.jsp?id=' + id+'&pwd='+pwd)
+            fetch('login.jsp',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({id: id, pwd: pwd})
+            })
                 .then(response => response.json())
                 .then(data => {
                     if (data.result != null) {
