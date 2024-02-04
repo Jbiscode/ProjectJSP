@@ -9,13 +9,13 @@
 <%@ include file="../../../resources/vendors/session.jsp" %>
 <%
     if (!isLogin) {
-        %>
+%>
 <script>
     alert("잘못된 접근입니다. 로그인 후 이용해주세요.");
     location.href = "../../../index.jsp";
 </script>
 
-    <%
+<%
     }
 %>
 
@@ -46,7 +46,8 @@
                 <label for="inputId">아이디*</label>
             </th>
             <td>
-                <input id="inputId" name="id" placeholder="" autocomplete="off"  oninput="resetId()" value="<%=session_id%>" disabled/>
+                <input id="inputId" name="id" placeholder="" autocomplete="off" oninput="resetId()"
+                       value="<%=session_id%>" disabled/>
                 <div class="errorMessage" id="idError"></div>
                 <div class="okMessage" id="idOk"></div>
             </td>
@@ -86,9 +87,11 @@
         <tr>
             <th>성 별*</th>
             <td>
-                <input type="radio" id="genderMale" name="gender" value="0" <%=session_gender.equals("0")?"checked":"" %>/>
+                <input type="radio" id="genderMale" name="gender"
+                       value="0" <%=session_gender.equals("0") ? "checked" : "" %>/>
                 <label for="genderMale">남자</label>
-                <input type="radio" id="genderFemale" name="gender" value="1" <%=session_gender.equals("1")?"checked":"" %>/>
+                <input type="radio" id="genderFemale" name="gender"
+                       value="1" <%=session_gender.equals("1") ? "checked" : "" %>/>
                 <label for="genderFemale">여자</label>
                 <div class="errorMessage" id="genderError"></div>
             </td>
@@ -97,7 +100,8 @@
             <th>이메일*</th>
             <td>
                 <input type="email" id="inputEmail" name="email1" value="<%=session_email1%>"/> @
-                <input type="email" id="inputEmailDomain" name="email2" oninput="resetEmail()" value="<%=session_email2%>"/>
+                <input type="email" id="inputEmailDomain" name="email2" oninput="resetEmail()"
+                       value="<%=session_email2%>"/>
                 <select name="email3" id="email3" onchange="checkEmail()">
                     <option value="" selected>직접 입력</option>
                     <option value="naver.com">naver.com</option>
@@ -132,7 +136,8 @@
                 <input type="text" id="zipcode" name="zipcode" maxlength="0" value="<%=session_zipcode%>"/>
                 <button type="button" id="btnZipcode" onclick="searchPost()">우편번호 검색</button>
                 <div>
-                    <input type="text" id="address1" name="address1" placeholder="주소" maxlength="0" value="<%=session_addr1%>"/>
+                    <input type="text" id="address1" name="address1" placeholder="주소" maxlength="0"
+                           value="<%=session_addr1%>"/>
                 </div>
                 <input type="text" id="address2" name="address2" placeholder="상세주소" value="<%=session_addr2%>"/>
             </td>
@@ -146,5 +151,20 @@
         </tr>
     </table>
 </form>
+<script>
+    addEventListener('load', () => {
+        let phone1 = '<%=session_tel1%>';
+
+        let selectElement = document.getElementById('inputPhone1');
+
+        for (let i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].value === phone1) {
+                selectElement.options[i].selected = true;
+                break;
+            }
+        }
+    })
+
+</script>
 </body>
 </html>

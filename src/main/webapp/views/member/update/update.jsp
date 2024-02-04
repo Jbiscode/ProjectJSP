@@ -45,12 +45,13 @@
             session.setAttribute("name", name);
             session.setAttribute("email1", email1);
             session.setAttribute("email2", email2);
+            session.setAttribute("gender",gender);
             session.setAttribute("tel1", phone1);
             session.setAttribute("tel2", phone2);
             session.setAttribute("tel3", phone3);
             session.setAttribute("zipcode", zipcode);
-            session.setAttribute("addr1", address1);
-            session.setAttribute("addr2", address2);
+            session.setAttribute("address1", address1);
+            session.setAttribute("address2", address2);
 %>
     <script>
         alert("회원정보 수정이 완료되었습니다.");
