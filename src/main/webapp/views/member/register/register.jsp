@@ -51,7 +51,7 @@
 %>
 <script>
     alert("회원가입 성공")
-    location.href = "loginForm.jsp";
+    location.href = "../login/loginForm.jsp";
 </script>
 <%
 } else {

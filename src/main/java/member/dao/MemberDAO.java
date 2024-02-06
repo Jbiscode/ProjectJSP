@@ -168,7 +168,20 @@ public class MemberDAO {
 
     public boolean updateMember(MemberDTO memberDTO) {
         boolean isUpdated = false;
-        String sql = "update member set name=?, pwd=?, gender=?, email1=?, email2=?, tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? where id=?";
+        String sql = """
+                                update member set name=?
+                                                                , pwd=?
+                                                                , gender=?
+                                                                , email1=?
+                                                                , email2=?
+                                                                , tel1=?
+                                                                , tel2=?
+                                                                , tel3=?
+                                                                , zipcode=?
+                                                                , addr1=?
+                                                                , addr2=? 
+                                                                where id=?
+                                                                """;
 
         getConnection();
         try {

@@ -110,10 +110,10 @@
                 <tr>
                     <th>주소</th>
                     <td>
-                        <input type="text" id="zipcode" name="zipcode" maxlength="0" />
+                        <input type="text" id="zipcode" name="zipcode" maxlength="0" readonly />
                         <button type="button" id="btnZipcode" onclick="searchPost()">우편번호 검색</button>
                         <div>
-                            <input type="text" id="address1" name="address1" placeholder="주소" maxlength="0" />
+                            <input type="text" id="address1" name="address1" placeholder="주소" maxlength="0" readonly />
                         </div>
                         <input type="text" id="address2" name="address2" placeholder="상세주소" />
                     </td>

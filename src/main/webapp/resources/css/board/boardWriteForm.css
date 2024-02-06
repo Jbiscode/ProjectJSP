@@ -1,0 +1,55 @@
+table, th, tr {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th {
+    font-size: 20px;
+    min-width: 80px;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+form {
+    width: 60%;
+    height: 70%;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    padding: 5px 10px;
+}
+
+#buttons {
+    text-align: center;
+    height: 20px;
+    padding: 10px 0;
+}
+
+#subject {
+    height: 10%;
+}
+
+#subjectInput {
+    resize: none;
+    width: 95%;
+    height: 50%;
+    margin-left: 2.5%;
+}
+
+#contentInput {
+    resize: none;
+    margin: 2.5%;
+    width: 95%;
+    height: 95%;
+}
