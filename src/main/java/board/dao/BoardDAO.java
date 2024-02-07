@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BoardDAO {
     private static BoardDAO boardDAO = new BoardDAO();
@@ -22,14 +23,14 @@ public class BoardDAO {
     private String port;
     private String sid;
     private String username;
-    private String password ;
+    private String password;
 
     public BoardDAO() {
         try {
             Reader reader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dev.json"), "UTF-8");
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            JsonObject database = jsonObject.getAsJsonObject("database");
+            JsonObject database = jsonObject.getAsJsonObject("mysql");
 
             driver = database.get("driver").getAsString();
             host = database.get("host").getAsString();
@@ -50,15 +51,16 @@ public class BoardDAO {
 
     public void getConnection() {
         try {
-            conn = DriverManager.getConnection(host+port+sid, username, password);
+            conn = DriverManager.getConnection(host + port + sid, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean writeContent(BoardDTO boardDTO){
+    public boolean writeContent(BoardDTO boardDTO) {
         boolean write = false;
-        String sql = "insert into BOARD (SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF) values (SEQ_BOARD.nextval,?,?,?,?,?,1) ";
+        //language=MySQL
+        String sql = "insert into BOARD (   ID, NAME, EMAIL, SUBJECT, CONTENT, REF) values (?,?,?,?,?,1)";
 
         getConnection();
         try {
@@ -85,4 +87,107 @@ public class BoardDAO {
         return write;
     }
 
+    public ArrayList<BoardDTO> loadContents(String scope, String key, int startPage) {
+        ArrayList<BoardDTO> boardDTOs = new ArrayList<>();
+        //language=MySQL
+        StringBuilder sql = new StringBuilder("SELECT * FROM board where");
+        if (scope.equals("all")) {
+            sql.append(" subject LIKE ? OR name LIKE ? OR content LIKE ?");
+        }
+        if (scope.equals("title")) {
+            sql.append(" subject LIKE ?");
+        }
+        if (scope.equals("writer_name")) {
+            sql.append(" name LIKE ?");
+        }
+        if (scope.equals("content")) {
+            sql.append(" content LIKE ?");
+        }
+        sql.append(" ORDER BY seq DESC LIMIT ?, ?");
+
+
+        getConnection();
+        try {
+            pstmt = conn.prepareStatement(sql.toString());//생성
+            if (scope.equals("all")) {
+                pstmt.setString(1, "%" + key + "%");
+                pstmt.setString(2, "%" + key + "%");
+                pstmt.setString(3, "%" + key + "%");
+                pstmt.setInt(4, (startPage - 1) * 10);
+                pstmt.setInt(5, 10);
+            } else {
+                pstmt.setString(1, "%" + key + "%");
+                pstmt.setInt(2, (startPage - 1) * 10);
+                pstmt.setInt(3, 10);
+            }
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                BoardDTO boardDTO = new BoardDTO();
+                boardDTO.setSeq(rs.getInt("seq"));
+                boardDTO.setName(rs.getString("name"));
+                boardDTO.setSubject(rs.getString("subject"));
+                boardDTO.setContent(rs.getString("content"));
+
+                boardDTOs.add(boardDTO);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return boardDTOs;
+    }
+
+    public int dataCnt(String scope, String key) {
+        int Cnt = 0;
+        StringBuilder sql = new StringBuilder("SELECT * FROM board where");
+        if (scope.equals("all")) {
+            sql.append(" subject LIKE ? OR name LIKE ? OR content LIKE ?");
+        }
+        if (scope.equals("title")) {
+            sql.append(" subject LIKE ?");
+        }
+        if (scope.equals("writer_name")) {
+            sql.append(" name LIKE ?");
+        }
+        if (scope.equals("content")) {
+            sql.append(" content LIKE ?");
+        }
+
+        getConnection();
+        try {
+            pstmt = conn.prepareStatement(sql.toString());//생성
+            if (scope.equals("all")) {
+                pstmt.setString(1, "%" + key + "%");
+                pstmt.setString(2, "%" + key + "%");
+                pstmt.setString(3, "%" + key + "%");
+            } else {
+                pstmt.setString(1, "%" + key + "%");
+            }
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Cnt++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return Cnt;
+    }
 }

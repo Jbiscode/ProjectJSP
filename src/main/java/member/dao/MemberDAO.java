@@ -31,7 +31,7 @@ public class MemberDAO {
             Reader reader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream("dev.json"), "UTF-8");
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            JsonObject database = jsonObject.getAsJsonObject("database");
+            JsonObject database = jsonObject.getAsJsonObject("mysql");
 
             driver = database.get("driver").getAsString();
             host = database.get("host").getAsString();
@@ -60,6 +60,7 @@ public class MemberDAO {
 
     public boolean isExistId(String id) {
         boolean exist = false;
+        //language=MySQL
         String sql = "select * from member where id=?";
 
         getConnection();
@@ -89,8 +90,9 @@ public class MemberDAO {
     public boolean insertMember(MemberDTO memberDTO) {
         conn = null;
         pstmt = null;
-
-        String sql = "insert into member values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
+//        String sql = "insert into member values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate)"; --oracle
+        //language=MySQL
+        String sql = "insert into member values (?,?,?,?,?,?,?,?,?,?,?,?,now())";
 
         getConnection();
         try {
@@ -125,6 +127,7 @@ public class MemberDAO {
 
     public MemberDTO login(String id, String pwd) {
         MemberDTO memberDTO = null;
+        //language=MySQL
         String sql = "select * from member where id=? and pwd=?";
 
         getConnection();
@@ -168,6 +171,7 @@ public class MemberDAO {
 
     public boolean updateMember(MemberDTO memberDTO) {
         boolean isUpdated = false;
+        //language=MySQL
         String sql = """
                                 update member set name=?
                                                                 , pwd=?

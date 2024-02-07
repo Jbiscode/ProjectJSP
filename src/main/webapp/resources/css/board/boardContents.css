@@ -1,0 +1,152 @@
+@import "../reset.css";
+html{
+    font-size: 10px;
+}
+table{ border-collapse: collapse; }
+
+#wrap{ width: 100vh;}
+.board_view{ width: 100%; border-top:2px solid #666; }
+.board_view th, .board_view td{ border: 1px solid #efefef; padding: 5px; }
+.board_view .board_content{ height: 200px; vertical-align: top; }
+
+.btn{ text-align: center; display: inline-block; float: none; padding: 7px 10px; border: 1px solid #bbb; background-color: #efefef; }
+
+
+/** 게시판 목록설정 */
+#board_listBox{
+    width: 468px;
+    height: 380px;
+    margin: 10px 20px;
+}
+#freeboard_head{
+    background-color: aquamarine;
+    font-size: 1.6rem;
+}
+#freeboard_head td{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+#freeboard_body{
+    font-size: 1.4rem;
+}
+#freeboard_body td{
+    border-top: 1px solid rgba(167, 167, 167, 0.362);
+    border-bottom: 1px solid rgba(167, 167, 167, 0.362);
+}
+.board_num{
+    width: 40px;
+    height: 30px;
+    text-align: center;
+}
+.board_name{
+    width: 230px;
+    height: 30px;
+    padding-left: 10px;
+}
+.board_writer{
+    width: 70px;
+    text-align: center;
+}
+.board_reg{
+    width: 60px;
+}
+.board_hit{
+    width: 42px;
+    text-align: center;
+}
+.util_menu a{
+    position: absolute;
+    left: 450px;
+    bottom: 12px;
+    font-size: 2rem;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+/** 방명록,댓글 입력창 */
+#visit_insert_wrap,#comment_insert_wrap{
+    width: 100vh;
+}
+
+#visit_insert_form,#comment_insert_form{
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    margin: 10px 0px 15px 15px;
+    padding: 10px;
+    border: 2px solid black;
+    /* border-bottom: 2px solid black; */
+    background-color: rgba(160, 157, 157, 0.275);
+    align-items: flex-end;
+    border-radius: 10px;
+    font-size: 1.4rem;
+}
+#visitor_image,#comment_image{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+
+#visitor_content,#comment_content{
+    resize: none;
+    width: 290px;
+    height: 80px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+#visit_insert_form :nth-child(3),#comment_insert_form :nth-child(3){
+    width: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+#visit_insert_form button,#comment_insert_form button{
+    width: 80px;
+    margin: 5px 0px 0px;
+}
+
+/** 방명록,댓글 리스트 */
+#visit_list_wrap,.comment_wrap{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+}
+#visit_list_header,#comment_list_header{
+    display: flex;
+    margin-left: 20px;
+    padding:5px 30px;
+    width: 400px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+    background-color: rgba(249, 206, 150, 0.763);
+}
+#comment_list_header{
+    background-color:rgba(109, 223, 140, 0.363) !important;
+}
+
+#visit_list_header :nth-child(2),#comment_list_header :nth-child(2){
+    padding-right: 110px;
+}
+#visit_list_content,#comment_list_content{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    border: 1px solid black;
+    margin:5px 0px 0px 20px;
+    padding:5px 30px;
+}
+#visit_list_content > p1,#comment_list_content >p1{
+    padding: 10px;
+}
+
+#comment_img{
+    width: 100px;
+    height: 100px;
+}

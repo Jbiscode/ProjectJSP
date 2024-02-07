@@ -31,7 +31,7 @@
 %>
 <script>
     alert("등록되었습니다.")
-    location.href = "../../../index.jsp"
+    location.href = "../contents/boardContents.jsp"
 </script>
 <%} else {%>
 <script>
