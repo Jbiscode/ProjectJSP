@@ -65,6 +65,7 @@
         <% }else{ %>
         <a class="btn btn-point" href="views/member/update/updateForm.jsp">회원정보 수정</a>
         <a class="btn btn-point" href="views/board/write/boardWriteForm.jsp">게시판</a>
+        <a class="btn btn-point" href="views/guestbook/guestbookWriteForm.jsp">방명록</a>
         <a class="btn btn-primary" href="views/member/login/logout.jsp">로그아웃</a>
         <% } %>
     </div>
